@@ -62,7 +62,7 @@ include_once("breadcrumb.php");
 								<div class="form-group">
 									<label> Date of Birth </label>
 									<!--input type="date" name="dob" class="form-control" placeholder="Start Date" value="<?php echo $res_row['dob'];	?>" /-->								
-									<input type="text" class="form-control datepicker" data-format="D, dd MM yyyy">
+									<input type="text" class="form-control datepicker" data-format="D, dd MM yyyy" value="<?php echo $res_row['dob']; ?>">
 								</div>
 								<div class="form-group">
 									<label> Gender </label>
@@ -73,7 +73,7 @@ include_once("breadcrumb.php");
 										data-bv-stringlength-message="The Gender must be Selected" 
 										pattern="^[a-zA-Z]+$"  />
 										<option value="select">Select...</option>
-										<option value="<?php echo $res_row['gender']; ?>"><?php echo $res_row['gender']; ?></option>
+										<option value="<?php echo $res_row['gender']; ?>" selected><?php echo $res_row['gender']; ?></option>
 										<option value="male">Male</option>
 										<option value="female">Female</option>
 										<option value="others">Others</option>
@@ -164,7 +164,7 @@ include_once("breadcrumb.php");
 									<label> Religion </label>
 									<select class="form-control" name="religion" data-bv-notempty data-bv-notempty-message="The Religion is required" value="<?php echo $res_row['religion']; ?>">
 										<option value="select">Select...</option>
-										<option value="<?php echo $res_row['religion']; ?>"><?php echo $res_row['religion']; ?></option>
+										<option value="<?php echo $res_row['religion']; ?>" selected><?php echo $res_row['religion']; ?></option>
 										<option value="hindu">Hindu</option>
 										<option value="muslim">Muslim</option>
 										<option value="christian">Christian</option>
@@ -183,7 +183,7 @@ include_once("breadcrumb.php");
 									<label> Blood Group </label>
 									<select class="form-control" name="blood" data-bv-notempty data-bv-notempty-message="The Blood Group is required">
 										<option value="select">Select...</option>
-										<option value="<?php echo $res_row['bloodgroup']; ?>"><?php echo $res_row['bloodgroup']; ?></option>
+										<option value="<?php echo $res_row['bloodgroup']; ?>" selected><?php echo $res_row['bloodgroup']; ?></option>
 										<option value="A +ve">A +ve</option>
 										<option value="A +ve">A1 +ve</option>
 										<option value="B +ve">B +ve</option>
@@ -234,7 +234,7 @@ include_once("breadcrumb.php");
 									<label> Martial Status </label>
 									<select class="form-control" name="martial" data-bv-notempty data-bv-notempty-message="The Religion is required">
 										<option value="select">Select...</option>
-										<option value="<?php echo $res_row['martialstatus']; ?>"><?PHP echo $res_row['martialstatus']; ?></option>
+										<option value="<?php echo $res_row['martialstatus']; ?>" selected><?PHP echo $res_row['martialstatus']; ?></option>
 										<option value="Single">Single</option>
 										<option value="Married">Married</option>
 									</select>
@@ -314,45 +314,8 @@ include_once("footer.php");
 				
 	
 				// Datepicker
-		if($.isFunction($.fn.datepicker))
-		{
-			$(".datepicker").each(function(i, el)
-			{
-				var $this = $(el),
-					opts = {
-						format: attrDefault($this, 'format', 'mm/dd/yyyy'),
-						startDate: attrDefault($this, 'startDate', ''),
-						endDate: attrDefault($this, 'endDate', ''),
-						daysOfWeekDisabled: attrDefault($this, 'disabledDays', ''),
-						startView: attrDefault($this, 'startView', 0),
-						rtl: rtl()
-					},
-					$n = $this.next(),
-					$p = $this.prev();
-								
-				$this.datepicker(opts);
-				
-				if($n.is('.input-group-addon') && $n.has('a'))
-				{
-					$n.on('click', function(ev)
-					{
-						ev.preventDefault();
-						
-						$this.datepicker('show');
-					});
-				}
-				
-				if($p.is('.input-group-addon') && $p.has('a'))
-				{
-					$p.on('click', function(ev)
-					{
-						ev.preventDefault();
-						
-						$this.datepicker('show');
-					});
-				}
-			});
-		}
+	
+			$('.datepicker').datepicker()
 		
 
 				

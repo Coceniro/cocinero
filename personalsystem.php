@@ -64,15 +64,15 @@ include_once("includes/code_header.php");
 	
 	
 	if($lang_read[$a]=="")  $r = "";
-	else $r = "R, ";
+	else $r = "R";
 	
 	if($lang_write[$a]=="") $w = "";
-	else $w = "W, ";
+	else $w = "W";
 	
 	if($lang_speak[$a]=="") $s = "";
-	else $s = "S# ";
+	else $s = "S";
 	
-	$languagear[$a] =  $language[$a]." - ".$r.$w.$s;
+	$languagear[$a] =  $language[$a]." - ".$r.",".$w.",".$s."#";
 	echo "<br>";
 	}
 	

@@ -28,7 +28,8 @@
 	                       	<li><a href="about.php">About</a></li>
 	                        <li><a href="contact.php">Contact</a></li>
 							<?PHP
-							if($_SESSION["ses_user_id"]=="")
+							$sessionuserid = $_SESSION["ses_user_id"];
+							if(isset($sessionuserid)=="")
 							{
 							?>
 	                       	<li class="dropdown">
@@ -42,8 +43,8 @@
 							<?PHP } else { ?>							
 							 <li class="search dropdown"><a href = "" class="dropdown-toggle" data-toggle="dropdown">Profile</a>
 							 <ul class="dropdown-menu">
-		                            <li><a href="login.php">Profile</a></li>
-		                            <li><a href="register.php">Logout</a></li>
+		                            <li><a href="profile.php">Profile</a></li>
+		                            <li><a href="logout.php">Logout</a></li>
 		                     </ul>
 							 
 							 </li>

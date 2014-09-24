@@ -11,6 +11,7 @@ include_once("breadcrumb.php");
 
 ?>
 	 <link href="css/jquery.tagsinput.css" rel="stylesheet" />
+	 <link rel="stylesheet" href="css/daterangepicker-bs3.css">
 
 		<!-- Content start -->
 	<section id="blog-page">
@@ -30,6 +31,12 @@ include_once("breadcrumb.php");
 							<div class="col-lg-12 col-md-12">
 								<div class="contact-form">
 						<h3>Personal Information</h3>
+						<?PHP
+						
+							$res = $GLOBALS['db_con_obj']->fetch_flds(personal,"*","registration_sk = '".$sessionuserid."'");
+							$res_row = mysql_fetch_array($res[0]);
+						
+						?>
 						<div class="form-box" id="login-box">
 						<form name="personal_form" action="personalsystem.php" method="post">
 							<div>
@@ -40,7 +47,7 @@ include_once("breadcrumb.php");
 										data-bv-stringlength-min="4" 
 										data-bv-stringlength-max="25" 
 										data-bv-stringlength-message="The First Name must be more than 3 and less than 25 characters long" 
-										pattern="^[a-zA-Z]+$"/>
+										pattern="^[a-zA-Z]+$" value="<?php echo $res_row['firstname']; ?>" />
 								</div>
 								<div class="form-group">
 									<label> Last Name </label>
@@ -49,12 +56,13 @@ include_once("breadcrumb.php");
 										data-bv-stringlength-min="4" 
 										data-bv-stringlength-max="25" 
 										data-bv-stringlength-message="The Last Name must be more than 3 and less than 25 characters long" 
-										pattern="^[a-zA-Z]+$"/>
+										pattern="^[a-zA-Z]+$" value="<?php echo $res_row['lastname']; ?>" />
 								</div>
 								       
 								<div class="form-group">
 									<label> Date of Birth </label>
-									<input type="date" name="dob" class="form-control" placeholder="Start Date" />
+									<!--input type="date" name="dob" class="form-control" placeholder="Start Date" value="<?php echo $res_row['dob'];	?>" /-->								
+									<input type="text" class="form-control datepicker" data-format="D, dd MM yyyy">
 								</div>
 								<div class="form-group">
 									<label> Gender </label>
@@ -63,8 +71,9 @@ include_once("breadcrumb.php");
 										data-bv-stringlength-min="4" 
 										data-bv-stringlength-max="25" 
 										data-bv-stringlength-message="The Gender must be Selected" 
-										pattern="^[a-zA-Z]+$"/>
+										pattern="^[a-zA-Z]+$"  />
 										<option value="select">Select...</option>
+										<option value="<?php echo $res_row['gender']; ?>"><?php echo $res_row['gender']; ?></option>
 										<option value="male">Male</option>
 										<option value="female">Female</option>
 										<option value="others">Others</option>
@@ -77,7 +86,7 @@ include_once("breadcrumb.php");
 										data-bv-stringlength-min="4" 
 										data-bv-stringlength-max="50" 
 										data-bv-stringlength-message="The Email Address must be more than 3 and less than 50 characters long" 
-										/>
+										value="<?php echo $res_row['emailid']; ?>" />
 								</div>
 								<div class="form-group">
 									<label> Address </label>
@@ -86,7 +95,7 @@ include_once("breadcrumb.php");
 										data-bv-stringlength-min="4" 
 										data-bv-stringlength-max="75" 
 										data-bv-stringlength-message="The Address must be more than 3 and less than 75 characters long" 
-										/>
+									    value="<?php echo $res_row['address']; ?>"	/>
 								</div>
 								<div class="form-group">
 									<label> Landmark | 2nd Line </label>
@@ -95,11 +104,11 @@ include_once("breadcrumb.php");
 										data-bv-stringlength-min="4" 
 										data-bv-stringlength-max="40" 
 										data-bv-stringlength-message="The Land Mark must be more than 3 and less than 40 characters long" 
-										/>
+									value="<?php echo $res_row['landmark']; ?>"	/>
 								</div>
 								<div class="form-group">
 									<label> Country </label>									
-									<input list="country" name = "country"  placeholder="Country" class="form-control">
+									<input list="country" name = "country"  placeholder="Country" class="form-control" value="<?php echo $res_row['country']; ?>">
 								<?PHP
 									$result = $GLOBALS['db_con_obj']->fetch_flds(country,"*", "1=1");
 									if($result[1]==0)
@@ -125,7 +134,7 @@ include_once("breadcrumb.php");
 								</div>
 								<div class="form-group">
 									<label> Zip Code </label>
-									<input type="text" name="zipcode" class="form-control" placeholder="Zipcode"/>
+									<input type="text" name="zipcode" class="form-control" placeholder="Zipcode" value="<?php echo $res_row['zipcode']; ?>"/>
 								</div>
 								<div class="form-group">
 									<label> City </label>
@@ -134,7 +143,7 @@ include_once("breadcrumb.php");
 										data-bv-stringlength-min="3" 
 										data-bv-stringlength-max="25" 
 										data-bv-stringlength-message="The City must be more than 3 and less than 25 characters long" 
-										pattern="^[a-zA-Z]+$"/>
+										pattern="^[a-zA-Z]+$" value="<?php echo $res_row['city']; ?>" />
 								</div>
 								<div class="form-group">
 									<label> State </label>
@@ -143,18 +152,19 @@ include_once("breadcrumb.php");
 										data-bv-stringlength-min="4" 
 										data-bv-stringlength-max="25" 
 										data-bv-stringlength-message="The State must be more than 3 and less than 25 characters long" 
-										pattern="^[a-zA-Z]+$"/>
+										pattern="^[a-zA-Z]+$" value="<?php echo $res_row['state']; ?>" />
 								</div>
 								
 								<div class="form-group">
 									<label> Nationality </label>
-									<input type="text" name="nationality" class="form-control" placeholder="Nationality"/>
+									<input type="text" name="nationality" class="form-control" placeholder="Nationality" value="<?php echo $res_row['nationality']; ?>" />
 								</div>
 								
 								<div class="form-group">
 									<label> Religion </label>
-									<select class="form-control" name="religion" data-bv-notempty data-bv-notempty-message="The Religion is required">
+									<select class="form-control" name="religion" data-bv-notempty data-bv-notempty-message="The Religion is required" value="<?php echo $res_row['religion']; ?>">
 										<option value="select">Select...</option>
+										<option value="<?php echo $res_row['religion']; ?>"><?php echo $res_row['religion']; ?></option>
 										<option value="hindu">Hindu</option>
 										<option value="muslim">Muslim</option>
 										<option value="christian">Christian</option>
@@ -163,7 +173,7 @@ include_once("breadcrumb.php");
 								</div>
 								<div class="form-group">
 									<label>Mobile Number</label>
-									<input name="mobile" id="tags" class="form-control" value="" placeholder="Add 1 r More" />
+									<input name="mobile" id="tags" class="form-control" placeholder="Add 1 r More" value="<?php echo $res_row['mobilenumber']; ?>" />
 								</div>
 								<!--div class="form-group">
 									<label> Mobile Number </label>
@@ -173,7 +183,9 @@ include_once("breadcrumb.php");
 									<label> Blood Group </label>
 									<select class="form-control" name="blood" data-bv-notempty data-bv-notempty-message="The Blood Group is required">
 										<option value="select">Select...</option>
+										<option value="<?php echo $res_row['bloodgroup']; ?>"><?php echo $res_row['bloodgroup']; ?></option>
 										<option value="A +ve">A +ve</option>
+										<option value="A +ve">A1 +ve</option>
 										<option value="B +ve">B +ve</option>
 										<option value="A -ve">A -ve</option>
 										<option value="B -ve">B -ve</option>
@@ -222,6 +234,7 @@ include_once("breadcrumb.php");
 									<label> Martial Status </label>
 									<select class="form-control" name="martial" data-bv-notempty data-bv-notempty-message="The Religion is required">
 										<option value="select">Select...</option>
+										<option value="<?php echo $res_row['martialstatus']; ?>"><?PHP echo $res_row['martialstatus']; ?></option>
 										<option value="Single">Single</option>
 										<option value="Married">Married</option>
 									</select>
@@ -284,95 +297,70 @@ include_once("footer.php");
 	<!-- Template custom -->
 	<script type="text/javascript" src="js/custom.js"></script>
 	
+	<!-- Date picker Field -->
+	<script src="js/bootstrap-datepicker.js"></script>
+	
 	<!-- Dynamic Field -->
 	<script type="text/javascript" src="js/script.js"></script>
 	
 	<script>
-            jQuery(document).ready(function() {
+         $(document).ready(function() {
                 
                 // Tags Input
-                jQuery('#tags').tagsInput({width:'auto'});
+                $('#tags').tagsInput({width:'auto'});
 				
 				 // Tags Input
-                jQuery('#tags1').tagsInput({width:'auto'});
-                 
-                // Textarea Autogrow
-                jQuery('#autoResizeTA').autogrow();
-                
-                // Spinner
-                var spinner = jQuery('#spinner').spinner();
-                spinner.spinner('value', 0);
-                
-                // Form Toggles
-                jQuery('.toggle').toggles({on: true});
-                
-                // Time Picker
-                jQuery('#timepicker').timepicker({defaultTIme: false});
-                jQuery('#timepicker2').timepicker({showMeridian: false});
-                jQuery('#timepicker3').timepicker({minuteStep: 15});
-                
-                // Date Picker
-                jQuery('#datepicker').datepicker();
-                jQuery('#datepicker-inline').datepicker();
-                jQuery('#datepicker-multiple').datepicker({
-                    numberOfMonths: 3,
-                    showButtonPanel: true
-                });
-                
-                // Input Masks
-                jQuery("#date").mask("99/99/9999");
-                jQuery("#phone").mask("(999) 999-9999");
-                jQuery("#ssn").mask("999-99-9999");
-                
-                // Select2
-                jQuery("#select-basic, #select-multi").select2();
-                jQuery('#select-search-hide').select2({
-                    minimumResultsForSearch: -1
-                });
-                
-                function format(item) {
-                    return '<i class="fa ' + ((item.element[0].getAttribute('rel') === undefined)?"":item.element[0].getAttribute('rel') ) + ' mr10"></i>' + item.text;
-                }
-                
-                // This will empty first option in select to enable placeholder
-                jQuery('select option:first-child').text('');
-                
-                jQuery("#select-templating").select2({
-                    formatResult: format,
-                    formatSelection: format,
-                    escapeMarkup: function(m) { return m; }
-                });
-                
-                // Color Picker
-                if(jQuery('#colorpicker').length > 0) {
-                    jQuery('#colorSelector').ColorPicker({
-			onShow: function (colpkr) {
-			    jQuery(colpkr).fadeIn(500);
-                            return false;
-			},
-			onHide: function (colpkr) {
-                            jQuery(colpkr).fadeOut(500);
-                            return false;
-			},
-			onChange: function (hsb, hex, rgb) {
-			    jQuery('#colorSelector span').css('backgroundColor', '#' + hex);
-			    jQuery('#colorpicker').val('#'+hex);
-			}
-                    });
-                }
-  
-                // Color Picker Flat Mode
-                jQuery('#colorpickerholder').ColorPicker({
-                    flat: true,
-                    onChange: function (hsb, hex, rgb) {
-			jQuery('#colorpicker3').val('#'+hex);
-                    }
-                });
-                
+                $('#tags1').tagsInput({width:'auto'});    
+				
+	
+				// Datepicker
+		if($.isFunction($.fn.datepicker))
+		{
+			$(".datepicker").each(function(i, el)
+			{
+				var $this = $(el),
+					opts = {
+						format: attrDefault($this, 'format', 'mm/dd/yyyy'),
+						startDate: attrDefault($this, 'startDate', ''),
+						endDate: attrDefault($this, 'endDate', ''),
+						daysOfWeekDisabled: attrDefault($this, 'disabledDays', ''),
+						startView: attrDefault($this, 'startView', 0),
+						rtl: rtl()
+					},
+					$n = $this.next(),
+					$p = $this.prev();
+								
+				$this.datepicker(opts);
+				
+				if($n.is('.input-group-addon') && $n.has('a'))
+				{
+					$n.on('click', function(ev)
+					{
+						ev.preventDefault();
+						
+						$this.datepicker('show');
+					});
+				}
+				
+				if($p.is('.input-group-addon') && $p.has('a'))
+				{
+					$p.on('click', function(ev)
+					{
+						ev.preventDefault();
+						
+						$this.datepicker('show');
+					});
+				}
+			});
+		}
+		
+
+				
+				
                 
             });
         </script>
 	
-
+ 
 </body>
 </html>

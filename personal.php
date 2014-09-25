@@ -33,7 +33,7 @@ include_once("breadcrumb.php");
 						<h3>Personal Information</h3>
 						<?PHP
 						
-							$res = $GLOBALS['db_con_obj']->fetch_flds(personal,"*","registration_sk = '".$sessionuserid."'");
+							$res = $GLOBALS['db_con_obj']->fetch_flds(personal,"*","registration_fk = '".$sessionuserid."'");
 							$res_row = mysql_fetch_array($res[0]);
 						
 						?>

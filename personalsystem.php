@@ -1,7 +1,8 @@
 <?PHP
 
-include_once("includes/code_header.php");
+	include_once("includes/code_header.php");
 
+	$sessionuserid = $_SESSION["ses_user_id"];
 
 	$firstname = $_POST['firstname'];
 	$lastname = $_POST['lastname'];
@@ -27,7 +28,7 @@ include_once("includes/code_header.php");
 	
 	$userid = $_SESSION["ses_user_id"];
 
-	echo $firstname;
+	/*echo $firstname;
 	echo $lastname;
 	echo $dob;
 	echo $gender;
@@ -46,18 +47,7 @@ include_once("includes/code_header.php");
 	/*echo $lang_read;
 	echo $lang_write;
 	echo $lang_speak;*/
-	echo $martial;
-	
-	
-	
-	
-	
-	/* $sql = "INSERT INTO `personal`(`registration_sk`, `firstname`, `lastname`, `dob`, `gender`, `emailid`, `address`, `landmark`, `country`, `zipcode`, `city`, `state`, `nationality`, `religion`, `mobilenumber`, `bloodgroup`, `languageknown`, `martialstatus`, `created_date`, `modified_date`, `active_status`, `delete_status`) VALUES ($userid,'$firstname','$lastname','$dob','$gender','$emailid','$address','$landmark','$country','$zipcode','$city','$state','$nationality','$religion','$mobile','$blood','$language','$martial',NOW(),NOW(),1,0)";
-	//var_dump($sql);
-	mysql_query($sql);
-	//var_dump($a);
-	
-	header("location:qualification.php");*/
+	//echo $martial;
 	
 	foreach($language as $a => $b){ 
 		//echo $a+1;
@@ -81,6 +71,18 @@ include_once("includes/code_header.php");
 	}
 	
 	$newccAddress = implode($languagear);
+	
+	$res = mysql_query("SELECT * FROM `personal` WHERE `registration_fk` = '".$sessionuserid."'");
+	$rcount = mysql_num_rows($res);
+	
+	if($rcount>0)
+	{
+	}	
+	else{	
+	 $sql = "INSERT INTO `personal`(`registration_fk`, `firstname`, `lastname`, `dob`, `gender`, `emailid`, `address`, `landmark`, `country`, `zipcode`, `city`, `state`, `nationality`, `religion`, `mobilenumber`, `bloodgroup`, `languageknown`, `martialstatus`, `created_date`, `modified_date`, `active_status`, `delete_status`) VALUES ($userid,'$firstname','$lastname','$dob','$gender','$emailid','$address','$landmark','$country','$zipcode','$city','$state','$nationality','$religion','$mobile','$blood','$language','$martial',NOW(),NOW(),1,0)";
+	mysql_query($sql);
+	}	
+	header("location:qualification.php");		
 	
 ?>
  

@@ -1,12 +1,18 @@
 <?PHP
+$frm_name = "hobbies";
+include_once("includes/code_header.php");
+if($_SESSION["ses_user_id"]=="")
+{
+	header("location:login.php");
+}
 include_once("header.php");
-$frm_name = "userhome";
 include_once("menu.php");
 include_once("breadcrumb.php");
 ?>
 
-
-		<!-- Content start -->
+	 <link href="css/jquery.tagsinput.css" rel="stylesheet" />
+	 
+	<!-- Content start -->
 	<section id="blog-page">
 		<div class="container">
 			<div class="row">
@@ -23,13 +29,17 @@ include_once("breadcrumb.php");
 						<div class="row">
 							<div class="col-lg-12 col-md-12">
 								<div class="contact-form">
-						<h3>Hobby</h3>
+						<h3>Hobbies</h3>
 						<div class="form-box" id="login-box">
 						<form name="hobbies_form" action="" method="post">
 							<div>
+								<!--div class="form-group">
+									<label> Hobby </label>
+									<input type="text" id="tags" name="Hobby" class="form-control" placeholder="Hobbies"/>
+								</div -->
 								<div class="form-group">
 									<label> Hobby </label>
-									<input type="text" name="Hobby" class="form-control" placeholder="Hobbies"/>
+									<input name="hobby" id="tags" class="form-control" placeholder="Add 1 r More"  />
 								</div>
 								<div class="form-group">
 									<div>
@@ -51,7 +61,7 @@ include_once("breadcrumb.php");
 				
 				<!-- display details division -->
 					<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-						<?PHP
+						<?PHP /*
 						$companyname = $_POST['companyname'];
 						$projecttitle = $_POST['projecttitle'];
 						$startdate = $_POST['startdate'];
@@ -68,7 +78,7 @@ include_once("breadcrumb.php");
 						echo $projectdescription."<br>";
 						echo $platform."<br>";
 						echo $field."<br>";
-						
+						*/
 					?>
 					</div>
 	
@@ -103,6 +113,21 @@ include_once("footer.php");
 
 	<!-- Template custom -->
 	<script type="text/javascript" src="js/custom.js"></script>
+	
+	<!-- Input Tags -->
+	<script src="js/jquery.tagsinput.min.js"></script>
+	
+	<script>
+         $(document).ready(function() {
+                
+                // Tags Input
+                $('#tags').tagsInput({width:'auto'});
+				
+				 // Tags Input
+                $('#tags1').tagsInput({width:'auto'});    
+				              
+            });
+        </script>
 
 </body>
 </html>

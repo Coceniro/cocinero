@@ -37,28 +37,52 @@ include_once("breadcrumb.php");
 								<div class="contact-form">
 						<h3>Qualification</h3>
 						<div class="form-box" id="login-box">
-						<form name="qualification_form" action="certificate.php" method="post">
-						<!--	<div>
-								<div class="form-group">
-									<label> Degree </label>
-									<input type="text" name="degree" class="form-control" placeholder="degree"/>
-								</div>
-								<div class="form-group">
-									<label> Institution </label>
-									<input type="text" name="institution" class="form-control" placeholder="Institution"/>
-								</div>         
-								<div class="form-group">
-									<label> Start Year </label>
-									<input type="date" name="startyear" class="form-control" placeholder="Start Year"/>
-								</div>
-								<div class="form-group">
-									<label> End Year </label>
-									<input type="text" name="endyear" class="form-control" placeholder="End Year"/>
-								</div>
-								<div class="form-group">
-									<label> Percentage </label>
-									<input type="text" name="percentage" class="form-control" placeholder="Percentage"/>
-								</div>
+										
+							<form action="qualificationsystem.php" method="post" id="sign-up_area" role="form">
+							
+							
+								<div id="entry1" class="clonedInput">
+							
+								<?PHP
+								$i = 1;
+								$sql = "SELECT * FROM qualification WHERE `registration_fk` = $sessionuserid";
+								$a = mysql_query($sql);
+								while($row = mysql_fetch_array($a))
+								{								
+								
+								?>	<h2 id="reference" name="reference" class="heading-reference">Qualification <?PHP echo $i; ?></h2>
+										<div class="form-group">
+											<label> Degree </label>
+											<input type="text" name="degree[]" class="form-control" placeholder="degree" value="<?PHP  echo $row['course']; ?>" />
+										</div>
+										<div class="form-group">
+											<label> Institution </label>
+											<input type="text" name="institution[]" class="form-control" placeholder="Institution" value="<?PHP  echo $row['institution']; ?>"/>
+										</div>         
+										<div class="form-group">
+											<label> Start Year </label>
+											<input type="date" name="startyear[]" class="form-control" placeholder="Start Year" value="<?PHP  echo $row['startyear']; ?>"/>
+										</div>
+										<div class="form-group">
+											<label> End Year </label>
+											<input type="text" name="endyear[]" class="form-control" placeholder="End Year" value="<?PHP  echo $row['endyear']; ?>"/>
+										</div>
+										<div class="form-group">
+											<label> Percentage </label>
+											<input type="text" name="percentage[]" class="form-control" placeholder="Percentage" value="<?PHP  echo $row['percentage']; ?>"/>
+										</div>
+								<?PHP
+									$i++;											
+								}		
+								?>		
+								</div><!-- end #entry1 -->
+								<!-- Button (Double) -->
+								<p>
+								<button type="button" id="btnAdd" name="btnAdd" class="btn btn-info">add section</button>
+								  <button type="button" id="btnDel" name="btnDel" class="btn btn-danger">remove section above</button>
+								</p>
+								<!-- Button -->
+
 								<div class="form-group">
 									<div>
 										<button id="nextPage" name="next" class="pull-right btn">Next <i class="fa fa-arrow-circle-right"></i></button>
@@ -67,147 +91,9 @@ include_once("breadcrumb.php");
 										<button id="previousPage" name="previous" class="pull-left btn"><i class="fa fa-arrow-circle-left"></i> Previous</button>
 									</div>
 								</div>
-							</div> -->
-							
-							
-                                <!-- PROGRESS WIZARD -->
-                                <form method="post" id="progressWizard" class="panel-wizard">
-                                    <ul class="nav nav-justified nav-wizard">
-                                        <li><a href="#tab1-2" data-toggle="tab"><strong>Step 1:</strong> 10th Standard </a></li>
-                                        <li><a href="#tab2-2" data-toggle="tab"><strong>Step 2:</strong> 12th Standard </a></li>
-                                        <li><a href="#tab3-2" data-toggle="tab"><strong>Step 3:</strong> Under Graduate </a></li>
-										<li><a href="#tab4-2" data-toggle="tab"><strong>Step 4:</strong> Post Graduate </a></li>
-                                    </ul>
-                                    
-                                    <div class="progress progress-xs">
-                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                
-                                    <div class="tab-content">
-                                        
-                                        <div class="tab-pane active" id="tab1-2">
-                                            <div>
-												<h4> 10<sup>th</sup> Standard </h4>
-												<div class="form-group">
-													<label> Degree </label>
-													<input type="text" name="degree1" class="form-control" placeholder="degree"/>
-												</div>
-												<div class="form-group">
-													<label> Institution </label>
-													<input type="text" name="institution1" class="form-control" placeholder="Institution"/>
-												</div>         
-												<div class="form-group">
-													<label> Start Year </label>
-													<input type="date" name="startyear1" class="form-control" placeholder="Start Year"/>
-												</div>
-												<div class="form-group">
-													<label> End Year </label>
-													<input type="text" name="endyear1" class="form-control" placeholder="End Year"/>
-												</div>
-												<div class="form-group">
-													<label> Percentage </label>
-													<input type="text" name="percentage1" class="form-control" placeholder="Percentage"/>
-												</div>
-																				
-											</div>
-                                        </div><!-- tab-pane -->
-                                        
-                                        <div class="tab-pane" id="tab2-2">
-                                            <div>
-												<h4> 12<sup>th</sup> Standard </h4>
-												<div class="form-group">
-													<label> Degree </label>
-													<input type="text" name="degree2" class="form-control" placeholder="degree"/>
-												</div>
-												<div class="form-group">
-													<label> Institution </label>
-													<input type="text" name="institution2" class="form-control" placeholder="Institution"/>
-												</div>         
-												<div class="form-group">
-													<label> Start Year </label>
-													<input type="date" name="startyear2" class="form-control" placeholder="Start Year"/>
-												</div>
-												<div class="form-group">
-													<label> End Year </label>
-													<input type="text" name="endyear2" class="form-control" placeholder="End Year"/>
-												</div>
-												<div class="form-group">
-													<label> Percentage </label>
-													<input type="text" name="percentage2" class="form-control" placeholder="Percentage"/>
-												</div>
-												
-											</div>
-                                        </div><!-- tab-pane -->
-                                        
-                                        <div class="tab-pane" id="tab3-2">
-                                            <div>
-												<h4> Under Graduate </h4>
-												<div class="form-group">
-													<label> Degree </label>
-													<input type="text" name="degree3" class="form-control" placeholder="degree"/>
-												</div>
-												<div class="form-group">
-													<label> Institution </label>
-													<input type="text" name="institution3" class="form-control" placeholder="Institution"/>
-												</div>         
-												<div class="form-group">
-													<label> Start Year </label>
-													<input type="date" name="startyear3" class="form-control" placeholder="Start Year"/>
-												</div>
-												<div class="form-group">
-													<label> End Year </label>
-													<input type="text" name="endyear3" class="form-control" placeholder="End Year"/>
-												</div>
-												<div class="form-group">
-													<label> Percentage </label>
-													<input type="text" name="percentage3" class="form-control" placeholder="Percentage"/>
-												</div>
-												</div>
-                                        </div><!-- tab-pane -->
-										
-										<div class="tab-pane" id="tab4-2">
-                                            <div>
-												<h4> Post Graduate </h4>
-												<div class="form-group">
-													<label> Degree </label>
-													<input type="text" name="degree4" class="form-control" placeholder="degree"/>
-												</div>
-												<div class="form-group">
-													<label> Institution </label>
-													<input type="text" name="institution4" class="form-control" placeholder="Institution"/>
-												</div>         
-												<div class="form-group">
-													<label> Start Year </label>
-													<input type="date" name="startyear4" class="form-control" placeholder="Start Year"/>
-												</div>
-												<div class="form-group">
-													<label> End Year </label>
-													<input type="text" name="endyear4" class="form-control" placeholder="End Year"/>
-												</div>
-												<div class="form-group">
-													<label> Percentage </label>
-													<input type="text" name="percentage4" class="form-control" placeholder="Percentage"/>
-												</div>
-																				
-											</div>
-                                        </div><!-- tab-pane -->
-                                        
-										
-                                    </div><!-- tab-content -->
-                
-                                    <ul class="list-unstyled wizard">
-                                        <li class="pull-left previous"><button type="button" class="btn ">Previous</button></li>
-                                        <li class="pull-right next"><button type="button" class="btn ">Next</button></li>
-                                        <li class="pull-right finish hide"><button type="submit" class="btn ">Finish</button></li>
-                                    </ul>
-                                    
-                                </form><!-- panel-wizard -->
-              
-                            
-							
-						</form>
-						</div>
-					</div><!-- Contact form end -->	
+							</form>
+								</div>
+								</div><!-- Contact form end -->	
 							</div>
 						</div>
 					</section><!-- Blog post end -->
@@ -327,7 +213,11 @@ include_once("footer.php");
 	<!-- Animated Pie -->
 	<script type="text/javascript" src="js/jquery.easy-pie-chart.js"></script>
 
-
+	<!-- Jquery Min File -->
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<!-- Cloning -->
+	<script type="text/javascript" src="js/clone-form-td.js"></script>
+	
 	<!-- Template custom -->
 	<script type="text/javascript" src="js/custom.js"></script>
 

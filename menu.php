@@ -24,14 +24,15 @@
 
 					<nav class="collapse navbar-collapse clearfix" role="navigation">
 						<ul class="nav navbar-nav navbar-right">
-	                        <li class="active"><a href="index.php">Home</a></li>
-	                       	<li><a href="about.php">About</a></li>
-	                        <li><a href="contact.php">Contact</a></li>
+	                       
 							<?PHP
 							$sessionuserid = $_SESSION["ses_user_id"];
 							if(isset($sessionuserid)=="")
 							{
 							?>
+							 <li class="active"><a href="index.php">Home</a></li>
+	                       	<li><a href="about.php">About</a></li>
+	                        <li><a href="contact.php">Contact</a></li>
 	                       	<li class="dropdown">
 	                       		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Login | Register<i class="fa fa-caret-down"></i></a>
 								<ul class="dropdown-menu">
@@ -40,7 +41,11 @@
 		                        </ul>
 	                       	</li>
 							
-							<?PHP } else { ?>							
+							<?PHP } else { ?>	
+							<li class="active"><a href="index.php">Home</a></li>
+							<li><a href="personal.php">Resume</a></li>
+	                       	<li><a href="about.php">About</a></li>
+	                        <li><a href="contact.php">Contact</a></li>
 							 <li class="search dropdown"><a href = "" class="dropdown-toggle" data-toggle="dropdown">Profile</a>
 							 <ul class="dropdown-menu">
 		                            <li><a href="profile.php">Profile</a></li>

@@ -1,6 +1,12 @@
 <?PHP
+$frm_name = "certificate";
+include_once("includes/code_header.php");
+if($_SESSION["ses_user_id"]=="")
+{
+	header("location:login.php");
+}
 include_once("header.php");
-$frm_name = "userhome";
+
 include_once("menu.php");
 include_once("breadcrumb.php");
 ?>
@@ -24,21 +30,36 @@ include_once("breadcrumb.php");
 							<div class="col-lg-12 col-md-12">
 								<div class="contact-form">
 						<h3>Certification</h3>
+						<?PHP
+						
+							$res = $GLOBALS['db_con_obj']->fetch_flds(certificate,"*","registration_fk = '".$sessionuserid."'");
+							$res_row = mysql_fetch_array($res[0]);
+						
+						?>
 						<div class="form-box" id="login-box">
-						<form name="certificate_form" action="skills.php" method="post">
-							<div>
-								<div class="form-group">
-									<label> Subject | Name</label>
-									<input type="text" name="subject" class="form-control" placeholder="Subject"/>
-								</div>
-								<div class="form-group">
-									<label> Institution </label>
-									<input type="text" name="institution" class="form-control" placeholder="Institution"/>
-								</div>         
-								<div class="form-group">
-									<label> Company </label>
-									<input type="text" name="Company" class="form-control" placeholder="Company"/>
-								</div>
+						<form action="#" method="post" id="sign-up_area" role="form">
+								<div id="entry1" class="clonedInput">
+								<h2 id="reference" name="reference" class="heading-reference">Entry #1</h2>
+									<div class="form-group">
+										<label> Subject | Name</label>
+										<input type="text" name="subject" class="form-control" placeholder="Subject" value="<?php echo $res_row['subject']; ?>"/>
+									</div>
+									<div class="form-group">
+										<label> Institution </label>
+										<input type="text" name="institution" class="form-control" placeholder="Institution" value="<?php echo $res_row['institution']; ?>"/>
+									</div>         
+									<div class="form-group">
+										<label> Company </label>
+										<input type="text" name="company" class="form-control" placeholder="Company" value="<?php echo $res_row['company']; ?>"/>
+									</div>
+								</div><!-- end #entry1 -->
+								<!-- Button (Double) -->
+								<p>
+								<button type="button" id="btnAdd" name="btnAdd" class="btn btn-info">add section</button>
+								  <button type="button" id="btnDel" name="btnDel" class="btn btn-danger">remove section above</button>
+								</p>
+								<!-- Button -->
+
 								<div class="form-group">
 									<div>
 										<button id="nextPage" name="next" class="pull-right btn">Next <i class="fa fa-arrow-circle-right"></i></button>
@@ -47,7 +68,6 @@ include_once("breadcrumb.php");
 										<button id="previousPage" name="previous" class="pull-left btn"><i class="fa fa-arrow-circle-left"></i> Previous</button>
 									</div>
 								</div>
-							</div>
 						</form>
 						</div>
 					</div><!-- Contact form end -->	
@@ -140,7 +160,11 @@ include_once("footer.php");
 	<!-- Animated Pie -->
 	<script type="text/javascript" src="js/jquery.easy-pie-chart.js"></script>
 
-
+	<!-- Jquery Min File -->
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<!-- Cloning -->
+	<script type="text/javascript" src="js/clone-form-td.js"></script>
+	
 	<!-- Template custom -->
 	<script type="text/javascript" src="js/custom.js"></script>
 

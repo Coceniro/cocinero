@@ -1,6 +1,11 @@
 <?PHP
+$frm_name = "extra";
+include_once("includes/code_header.php");
+if($_SESSION["ses_user_id"]=="")
+{
+	header("location:login.php");
+}
 include_once("header.php");
-$frm_name = "userhome";
 include_once("menu.php");
 include_once("breadcrumb.php");
 ?>
@@ -25,14 +30,22 @@ include_once("breadcrumb.php");
 								<div class="contact-form">
 						<h3>Extra Circular Activities </h3>
 						<div class="form-box" id="login-box">
-						<form name="extra_form" action="work_exp.php" method="post">
-							<div>
-								<div class="form-group">
+						<form action="#" method="post" id="sign-up_area" role="form">
+								<div id="entry1" class="clonedInput">
+								<h2 id="reference" name="reference" class="heading-reference">Entry #1</h2>
+									<div class="form-group">
 									<label> Extra Circular Activities </label>
 									<textarea name="extra" class="form-control" placeholder="Enter your own.. Extra Circular Activities"> </textarea>
 								</div>
-								
-																<div class="form-group">
+								</div><!-- end #entry1 -->
+								<!-- Button (Double) -->
+								<p>
+								<button type="button" id="btnAdd" name="btnAdd" class="btn btn-info">add section</button>
+								  <button type="button" id="btnDel" name="btnDel" class="btn btn-danger">remove section above</button>
+								</p>
+								<!-- Button -->
+
+								<div class="form-group">
 									<div>
 										<button id="nextPage" name="next" class="pull-right btn">Next <i class="fa fa-arrow-circle-right"></i></button>
 									</div>
@@ -40,8 +53,7 @@ include_once("breadcrumb.php");
 										<button id="previousPage" name="previous" class="pull-left btn"><i class="fa fa-arrow-circle-left"></i> Previous</button>
 									</div>
 								</div>
-							</div>
-						</form>
+								</form>
 						</div>
 					</div><!-- Contact form end -->	
 							</div>
@@ -89,6 +101,10 @@ include_once("footer.php");
 	<!-- Animated Pie -->
 	<script type="text/javascript" src="js/jquery.easy-pie-chart.js"></script>
 
+	<!-- Jquery Min File -->
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<!-- Cloning -->
+	<script type="text/javascript" src="js/clone-form-td.js"></script>
 
 	<!-- Template custom -->
 	<script type="text/javascript" src="js/custom.js"></script>

@@ -26,7 +26,7 @@
 	
 	$martial = $_POST['martial'];
 	
-	$userid = $_SESSION["ses_user_id"];
+	//$userid = $_SESSION["ses_user_id"];
 
 	/*echo $firstname;
 	echo $lastname;
@@ -77,9 +77,10 @@
 	
 	if($rcount>0)
 	{
+		
 	}	
 	else{	
-	 $sql = "INSERT INTO `personal`(`registration_fk`, `firstname`, `lastname`, `dob`, `gender`, `emailid`, `address`, `landmark`, `country`, `zipcode`, `city`, `state`, `nationality`, `religion`, `mobilenumber`, `bloodgroup`, `languageknown`, `martialstatus`, `created_date`, `modified_date`, `active_status`, `delete_status`) VALUES ($userid,'$firstname','$lastname','$dob','$gender','$emailid','$address','$landmark','$country','$zipcode','$city','$state','$nationality','$religion','$mobile','$blood','$language','$martial',NOW(),NOW(),1,0)";
+	 $sql = "INSERT INTO `personal`(`registration_fk`, `firstname`, `lastname`, `dob`, `gender`, `emailid`, `address`, `landmark`, `country`, `zipcode`, `city`, `state`, `nationality`, `religion`, `mobilenumber`, `bloodgroup`, `languageknown`, `martialstatus`, `created_date`, `modified_date`, `active_status`, `delete_status`) VALUES ($sessionuserid,'$firstname','$lastname','$dob','$gender','$emailid','$address','$landmark','$country','$zipcode','$city','$state','$nationality','$religion','$mobile','$blood','$language','$martial',NOW(),NOW(),1,0)";
 	mysql_query($sql);
 	}	
 	header("location:qualification.php");		

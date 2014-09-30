@@ -10,7 +10,8 @@ include_once("menu.php");
 include_once("breadcrumb.php");
 
 ?>
-	 <link href="css/jquery.tagsinput.css" rel="stylesheet" />
+	
+	 <link href="css/jquery.tagsinput.css" rel="stylesheet">
 	 <link rel="stylesheet" href="css/daterangepicker-bs3.css">
 
 		<!-- Content start -->
@@ -303,6 +304,8 @@ include_once("footer.php");
 	<!-- Dynamic Field -->
 	<script type="text/javascript" src="js/script.js"></script>
 	
+	<script type="text/javascript" src="js/bootstrapValidator.min.js"></script>
+	
 	<script>
          $(document).ready(function() {
                 
@@ -314,12 +317,8 @@ include_once("footer.php");
 				
 	
 				// Datepicker
-	
-			$('.datepicker').datepicker()
-		
-
-				
-				
+				$('.datepicker').datepicker()
+					
                 
             });
         </script>

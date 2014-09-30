@@ -1,4 +1,10 @@
 <?PHP
+$frm_name = "template";
+include_once("includes/code_header.php");
+if($_SESSION["ses_user_id"]=="")
+{
+	header("location:login.php");
+}
 include_once("header.php");
 ?>	
   		<link rel="stylesheet" href="menu/jquery.ferro.ferroMenu.css" />

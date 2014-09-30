@@ -1,6 +1,11 @@
 <?PHP
+$frm_name = "project";
+include_once("includes/code_header.php");
+if($_SESSION["ses_user_id"]=="")
+{
+	header("location:login.php");
+}
 include_once("header.php");
-$frm_name = "userhome";
 include_once("menu.php");
 include_once("breadcrumb.php");
 ?>
@@ -25,53 +30,62 @@ include_once("breadcrumb.php");
 								<div class="contact-form">
 						<h3>Project</h3>
 						<div class="form-box" id="login-box">
-						<form name="project_form" action="award.php" method="post">
-							<div>
+						<form action="#" method="post" id="sign-up_area" role="form">
+								<div id="entry1" class="clonedInput">
+								<h2 id="reference" name="reference" class="heading-reference">Entry #1</h2>
+									<div class="form-group">
+										<label> Company Name </label>
+										<input type="text" name="companyname" class="form-control" placeholder="Company Name"/>
+									</div>
+									<div class="form-group">
+										<label> Project Title </label>
+										<input type="text" name="projecttitle" class="form-control" placeholder="Project Title"/>
+									</div>         
+									<div class="form-group">
+										<label> Start date </label>
+										<input type="date" name="startdate" class="form-control" placeholder="Start Date"/>
+									</div>
+									<div class="form-group">
+										<label> End date </label>
+										<input type="text" name="enddate" class="form-control" placeholder="End Date"/>
+									</div>
+									<div class="form-group">
+										<label> Project Description </label>
+										<input type="text" name="projectdescription" class="form-control" placeholder="Project Description"/>
+									</div>
+									<div class="form-group">
+										<label> Platform </label>
+										<input type="text" name="platform" class="form-control" placeholder="Platform"/>
+									</div>
+									<div class="form-group">
+										<label> Field </label>
+										<input type="text" name="field" class="form-control" placeholder="Field"/>
+									</div>
+									<div class="form-group">
+										<label> Internal Guide Name </label>
+										<input type="text" name="iguidename" class="form-control" placeholder="Internal Guide Name"/>
+									</div>
+									<div class="form-group">
+										<label> Internal Guide Contact </label>
+										<input type="text" name="iguidecontact" class="form-control" placeholder="Internal Guide Contact"/>
+									</div>
+									<div class="form-group">
+										<label> External Guide Name </label>
+										<input type="text" name="eguidename" class="form-control" placeholder="External Guide Name"/>
+									</div>
+									<div class="form-group">
+										<label> External Guide Contact </label>
+										<input type="text" name="eguidecontact" class="form-control" placeholder="External Guide Contact"/>
+									</div>
+								</div><!-- end #entry1 -->
+								<!-- Button (Double) -->
+								<p>
+								<button type="button" id="btnAdd" name="btnAdd" class="btn btn-info">add section</button>
+								  <button type="button" id="btnDel" name="btnDel" class="btn btn-danger">remove section above</button>
+								</p>
+								<!-- Button -->
+
 								<div class="form-group">
-									<label> Company Name </label>
-									<input type="text" name="companyname" class="form-control" placeholder="Company Name"/>
-								</div>
-								<div class="form-group">
-									<label> Project Title </label>
-									<input type="text" name="projecttitle" class="form-control" placeholder="Project Title"/>
-								</div>         
-								<div class="form-group">
-									<label> Start date </label>
-									<input type="date" name="startdate" class="form-control" placeholder="Start Date"/>
-								</div>
-								<div class="form-group">
-									<label> End date </label>
-									<input type="text" name="enddate" class="form-control" placeholder="End Date"/>
-								</div>
-								<div class="form-group">
-									<label> Project Description </label>
-									<input type="text" name="projectdescription" class="form-control" placeholder="Project Description"/>
-								</div>
-								<div class="form-group">
-									<label> Platform </label>
-									<input type="text" name="platform" class="form-control" placeholder="Platform"/>
-								</div>
-								<div class="form-group">
-									<label> Field </label>
-									<input type="text" name="field" class="form-control" placeholder="Field"/>
-								</div>
-								<div class="form-group">
-									<label> Internal Guide Name </label>
-									<input type="text" name="iguidename" class="form-control" placeholder="Internal Guide Name"/>
-								</div>
-								<div class="form-group">
-									<label> Internal Guide Contact </label>
-									<input type="text" name="iguidecontact" class="form-control" placeholder="Internal Guide Contact"/>
-								</div>
-								<div class="form-group">
-									<label> External Guide Name </label>
-									<input type="text" name="eguidename" class="form-control" placeholder="External Guide Name"/>
-								</div>
-								<div class="form-group">
-									<label> External Guide Contact </label>
-									<input type="text" name="eguidecontact" class="form-control" placeholder="External Guide Contact"/>
-								</div>
-																<div class="form-group">
 									<div>
 										<button id="nextPage" name="next" class="pull-right btn">Next <i class="fa fa-arrow-circle-right"></i></button>
 									</div>
@@ -79,7 +93,6 @@ include_once("breadcrumb.php");
 										<button id="previousPage" name="previous" class="pull-left btn"><i class="fa fa-arrow-circle-left"></i> Previous</button>
 									</div>
 								</div>
-							</div>
 						</form>
 						</div>
 					</div><!-- Contact form end -->	
@@ -128,7 +141,11 @@ include_once("footer.php");
 	<!-- Animated Pie -->
 	<script type="text/javascript" src="js/jquery.easy-pie-chart.js"></script>
 
-
+	<!-- Jquery Min File -->
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<!-- Cloning -->
+	<script type="text/javascript" src="js/clone-form-td.js"></script>
+	
 	<!-- Template custom -->
 	<script type="text/javascript" src="js/custom.js"></script>
 
